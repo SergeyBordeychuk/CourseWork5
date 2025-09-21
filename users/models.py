@@ -10,6 +10,8 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=30, unique=True)
 
+    telegram_chat_id = models.CharField(max_length=100, null=True, blank=True)
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username',]
 

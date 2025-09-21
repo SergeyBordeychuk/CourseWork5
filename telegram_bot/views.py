@@ -6,6 +6,7 @@ from telegram_bot.models import Habit, Pleasant_Habit
 from telegram_bot.paginators import HabitPagination
 from telegram_bot.permissions import IsOwner
 from telegram_bot.serializers import HabitSerializer, PleasantHabitSerializer
+from telegram_bot.tasks import send_telegram_message
 
 
 # Create your views here.
@@ -18,6 +19,7 @@ class HabitCreateAPIView(generics.CreateAPIView):
         habit = serializer.save()
         habit.owner = self.request.user
         habit.save()
+        send_telegram_message(f'я буду {habit.action_do} в {habit.time} в {habit.place}', habit.owner__telegram_chat_id)
 
 
 class HabitListAPIView(generics.ListAPIView):

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 from django.conf.global_settings import LOGIN_REDIRECT_URL
 from dotenv import load_dotenv
@@ -182,10 +183,23 @@ CELERY_BROKER_URL = 'redis://localhost:6379' # Например, Redis, кото
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
 # Часовой пояс для работы Celery
-CELERY_TIMEZONE = "Australia/Tasmania"
+CELERY_TIMEZONE = TIME_ZONE
 
 # Флаг отслеживания выполнения задач
 CELERY_TASK_TRACK_STARTED = True
 
 # Максимальное время на выполнение задачи
 CELERY_TASK_TIME_LIMIT = 30 * 60
+
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+CELERY_BEAT_SCHEDULE = {
+    "send_telegram_message": {
+        "task": "telegram_bot.tasks.send_telegram_message",
+        "schedule": timedelta(days=1),
+    }
+}
+
+CELERY_RESULT_SERIALIZER = 'json'
+
+TELEGRAM_API_URL = 'https://api.telegram.org/bot'
