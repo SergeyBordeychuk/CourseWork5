@@ -5,14 +5,15 @@ from telegram_bot.validators import HabitValidator, HabitTimeValidator, HabitPer
 
 
 class HabitSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Habit
-        fields = '__all__'
-        validators = [HabitValidator(field1='connected_habit', field2='award'), HabitTimeValidator(field='time_do'), HabitPeriodValidator(field='period_days'),]
+        fields = ['name', 'action_do', 'is_public', 'time', 'place', 'time_do', 'connected_habit', 'award',
+                  'period_days', ]
+        validators = [HabitValidator(field1='connected_habit', field2='award'),
+                      HabitTimeValidator(field='time_do'), HabitPeriodValidator(field='period_days'), ]
 
 
 class PleasantHabitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pleasant_Habit
-        fields = '__all__'
+        fields = ['name', 'action_do', 'is_public', ]

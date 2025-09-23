@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
@@ -13,13 +12,13 @@ from telegram_bot.tasks import send_telegram_message
 class HabitCreateAPIView(generics.CreateAPIView):
     '''Создание привычки'''
     serializer_class = HabitSerializer
-    permission_classes = [IsAuthenticated,]
+    permission_classes = [IsAuthenticated, ]
 
     def perform_create(self, serializer):
-        habit = serializer.save()
-        habit.owner = self.request.user
-        habit.save()
-        send_telegram_message(f'я буду {habit.action_do} в {habit.time} в {habit.place}', habit.owner__telegram_chat_id)
+        habit = serializer.save(owner=self.request.user)
+        if habit.owner.telegram_chat_id:
+            send_telegram_message(f'я буду {habit.action_do} в {habit.time} в {habit.place}',
+                                  habit.owner.telegram_chat_id)
 
 
 class HabitListAPIView(generics.ListAPIView):
@@ -56,9 +55,7 @@ class PleasantHabitCreateAPIView(generics.CreateAPIView):
     permission_classes = [IsOwner, IsAuthenticated]
 
     def perform_create(self, serializer):
-        pleasant_habit = serializer.save()
-        pleasant_habit.owner = self.request.user
-        pleasant_habit.save()
+        habit = serializer.save(owner=self.request.user)
 
 
 class PleasantHabitListAPIView(generics.ListAPIView):

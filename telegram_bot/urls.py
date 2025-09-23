@@ -20,4 +20,4 @@ urlpatterns = [
     path('pleasant_habit/update/<int:pk>', PleasantHabitUpdateAPIView.as_view(), name='pleasant_habit_update'),
     path('pleasant_habit/<int:pk>', PleasantHabitRetrieveAPIView.as_view(), name='pleasant_habit'),
     path('pleasant_habit/delete/<int:pk>', PleasantHabitDestroyAPIView.as_view(), name='pleasant_habit_delete'),
-    ] + router.urls
+] + router.urls

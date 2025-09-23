@@ -9,6 +9,7 @@ from telegram_bot.models import Habit, Pleasant_Habit
 class HabitAdmin(admin.ModelAdmin):
     exclude = ()
 
+
 @admin.register(Pleasant_Habit)
 class PleasantHabitAdmin(admin.ModelAdmin):
     exclude = ()

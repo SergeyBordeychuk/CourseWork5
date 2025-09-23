@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework.generics import CreateAPIView, UpdateAPIView, ListAPIView, RetrieveAPIView, DestroyAPIView
 
 from users.models import CustomUser
@@ -14,6 +13,7 @@ class UserCreateAPIView(CreateAPIView):
         user = serializer.save()
         user.set_password(user.password)
         user.save()
+
 
 class UserUpdateAPIView(UpdateAPIView):
     serializer_class = UserSerializer

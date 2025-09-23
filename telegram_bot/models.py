@@ -30,12 +30,9 @@ class Habit(models.Model):
     award = models.CharField(max_length=100, null=True, blank=True)
     period_days = models.PositiveIntegerField(default=1)
 
-
     def __str__(self):
         return self.name
 
     class Meta:
         verbose_name = "привычка"
         verbose_name_plural = "привычки"
-
-
