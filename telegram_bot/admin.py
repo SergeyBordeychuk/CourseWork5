@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from telegram_bot.models import Habit, Pleasant_Habit
+from telegram_bot.models import Habit, PleasantHabit
 
 
 # Register your models here.
@@ -10,6 +10,6 @@ class HabitAdmin(admin.ModelAdmin):
     exclude = ()
 
 
-@admin.register(Pleasant_Habit)
+@admin.register(PleasantHabit)
 class PleasantHabitAdmin(admin.ModelAdmin):
     exclude = ()

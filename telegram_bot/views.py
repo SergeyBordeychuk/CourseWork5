@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
-from telegram_bot.models import Habit, Pleasant_Habit
+from telegram_bot.models import Habit, PleasantHabit
 from telegram_bot.paginators import HabitPagination
 from telegram_bot.permissions import IsOwner
 from telegram_bot.serializers import HabitSerializer, PleasantHabitSerializer
@@ -62,25 +62,25 @@ class PleasantHabitListAPIView(generics.ListAPIView):
     '''Просмотр всех привычек'''
     serializer_class = PleasantHabitSerializer
     permission_classes = [IsOwner, IsAuthenticated]
-    queryset = Pleasant_Habit.objects.all()
+    queryset = PleasantHabit.objects.all()
     pagination_class = HabitPagination
 
 
 class PleasantHabitRetrieveAPIView(generics.RetrieveAPIView):
     '''Просмотр привычки'''
     serializer_class = PleasantHabitSerializer
-    queryset = Pleasant_Habit.objects.all()
+    queryset = PleasantHabit.objects.all()
     permission_classes = [IsOwner, IsAuthenticated]
 
 
 class PleasantHabitUpdateAPIView(generics.UpdateAPIView):
     '''Обновление инф. привычки'''
     serializer_class = PleasantHabitSerializer
-    queryset = Pleasant_Habit.objects.all()
+    queryset = PleasantHabit.objects.all()
     permission_classes = [IsOwner, IsAuthenticated]
 
 
 class PleasantHabitDestroyAPIView(generics.DestroyAPIView):
     '''Удаление привычки'''
-    queryset = Pleasant_Habit.objects.all()
+    queryset = PleasantHabit.objects.all()
     permission_classes = [IsOwner, IsAuthenticated]

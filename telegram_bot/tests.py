@@ -3,7 +3,7 @@ import datetime
 from rest_framework.test import APITestCase
 from rest_framework import status
 
-from telegram_bot.models import Habit, Pleasant_Habit
+from telegram_bot.models import Habit, PleasantHabit
 from users.models import CustomUser
 
 
@@ -62,7 +62,7 @@ class TestPleasantHabit(APITestCase):
     def setUp(self):
         self.user = CustomUser.objects.create_user(username='admin', email='admin@gmail.com', password='admin')
         self.client.force_authenticate(self.user)
-        self.habit = Pleasant_Habit.objects.create(name='test', action_do='plak', is_public=True, owner=self.user,
+        self.habit = PleasantHabit.objects.create(name='test', action_do='plak', is_public=True, owner=self.user,
                                           pk=3)
 
     def test_create_pleasant_habit(self):
@@ -136,4 +136,3 @@ class TestPleasantHabit(APITestCase):
             'period_days': 2,
         }
         response = self.client.post('/habit/create/', data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

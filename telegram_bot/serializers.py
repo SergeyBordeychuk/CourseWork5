@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from telegram_bot.models import Habit, Pleasant_Habit
+from telegram_bot.models import Habit, PleasantHabit
 from telegram_bot.validators import HabitValidator, HabitTimeValidator, HabitPeriodValidator
 
 
@@ -15,5 +15,5 @@ class HabitSerializer(serializers.ModelSerializer):
 
 class PleasantHabitSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Pleasant_Habit
+        model = PleasantHabit
         fields = ['name', 'action_do', 'is_public', ]

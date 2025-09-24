@@ -4,7 +4,7 @@ from users.models import CustomUser
 
 
 # Create your models here.
-class Pleasant_Habit(models.Model):
+class PleasantHabit(models.Model):
     owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     action_do = models.CharField(max_length=100)
@@ -26,7 +26,7 @@ class Habit(models.Model):
     action_do = models.CharField(max_length=100)
     time_do = models.PositiveIntegerField()
     is_public = models.BooleanField(default=False)
-    connected_habit = models.ForeignKey(Pleasant_Habit, on_delete=models.CASCADE, null=True, blank=True)
+    connected_habit = models.ForeignKey(PleasantHabit, on_delete=models.CASCADE, null=True, blank=True)
     award = models.CharField(max_length=100, null=True, blank=True)
     period_days = models.PositiveIntegerField(default=1)
 
