@@ -9,7 +9,7 @@ class CustomUser(AbstractUser):
     avatar = models.ImageField()
     city = models.CharField(max_length=30)
     email = models.EmailField(unique=True)
-    username = None
+    username = models.CharField(max_length=30)
 
     telegram_chat_id = models.CharField(max_length=100, null=True, blank=True)
 

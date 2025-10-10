@@ -56,6 +56,9 @@ class PleasantHabitCreateAPIView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         habit = serializer.save(owner=self.request.user)
+        if habit.owner.telegram_chat_id:
+            send_telegram_message(f'я буду {habit.action_do}',
+                                  habit.owner.telegram_chat_id)
 
 
 class PleasantHabitListAPIView(generics.ListAPIView):
