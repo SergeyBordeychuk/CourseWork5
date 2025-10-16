@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-WORKDIR /materials
+WORKDIR /telegram_bot
 
 ENV SECRET_KEY='fdsafsad31251436'
 
@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN mkdir -p /materials/media
+RUN mkdir -p /telegram_bot/media
 
 EXPOSE 8000
 
