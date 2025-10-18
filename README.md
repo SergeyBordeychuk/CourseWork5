@@ -48,3 +48,17 @@ docker stats
 ```commandline
 docker-compose logs
 ```
+7. Для запуска проекта локально, напишите
+```commandline
+docker-compose up -d --build
+```
+8.Адрес сервера
+```commandline
+84.201.150.167
+```
+10. Настройка сервера
+```commandline
+git clone https://github.com/SergeyBordeychuk/CourseWork5.git
+cd CourseWork5/
+docker-compose up -d --build
+```
